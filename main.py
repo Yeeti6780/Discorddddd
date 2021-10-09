@@ -141,7 +141,7 @@ async def member(ctx, member : discord.Member):
 keep_alive.keep_alive()
 
 #token in line 60
-client.run("ODg2MDU2OTg3MDIyOTgzMjA4.YTwC3w.He9sPedAt1vKZb0TpbGKKHhIJJg")
+client.run(os.environ['token'])
 #to keep your bot from shutting down use https://uptimerobot.com then create a https:// monitor and put the link to the website that appewars when you run this repl in the monitor and it will keep your bot alive by pinging the flask server
 #enjoy!
 
