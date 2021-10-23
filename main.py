@@ -10,10 +10,13 @@ from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions,  CheckFailure, check
 #^ basic imports for other features of discord.py and python ^
 
-
+intents = discord.Intents.none()
+intents.reactions = True
+intents.members = True
+intents.guilds = True
 client = discord.Client()
 
-client =  commands.Bot(command_prefix = '!') #put your own prefix here
+client =  commands.Bot(command_prefix = '!',intents = intents) #put your own prefix here
 
 @client.event
 async def on_ready():
@@ -22,13 +25,17 @@ async def on_ready():
 @client.event
 async def on_member_join(member):
     joinTestEmbed = discord.Embed(
-        title = "New Member Alert! Wait, is there free Pizza?",
+        title = "New Member Alert!",
         color = 0x63cf5b,
         description = "A new user has joined this here server! Please welcome" + member.mention + "!"
-    )
-    print("testing")
+    ) 
+    joinTestEmbed.set_thumbnail(url=member.avatar_url)
+
     channel = client.get_channel(891433129305341984)
+    print(channel)
     await channel.send(embed=joinTestEmbed)
+    #await member.send(f'Hey, {member} welcome to {member.guild.name}! Enjoy your stay!')
+
 
 @client.command()
 async def send(ctx, channel, *, content):
@@ -38,7 +45,14 @@ async def send(ctx, channel, *, content):
 
 @client.command()
 async def dinner(ctx):
+  print("test")
   await ctx.send("🔔🔔🔔🔔🔔🔔🔔🔔𝕋𝕚𝕞𝕖 𝕗𝕠𝕣 𝕕𝕚𝕟𝕟𝕖𝕣!🔔🔔🔔🔔🔔🔔🔔🔔🔔")
+
+
+@client.command()
+async def lunch(ctx):
+  print("test")
+  await ctx.send("🔔🔔🔔🔔🔔🔔🔔🔔𝕋𝕚𝕞𝕖 𝔽𝕠𝕣 𝕃𝕦𝕟𝕔𝕙!!🔔🔔🔔🔔🔔🔔🔔🔔🔔") 
 
 
 
